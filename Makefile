@@ -1,23 +1,28 @@
-# Makefile.mjlib for Makefile.pdlibbuilder. 
+# Makefile for Makefile.pdlibbuilder. 
 # 
 
 lib.name = mjlib
 
 class.sources = \
-about.c \
-convolve~.c \
-metroplus.c \
-monorhythm.c \
-morse.c \
-n2m.c \
-pin~.c \
-prob.c \
-synapseA~.c
+src/about.c \
+src/convolve~.c \
+src/metroplus.c \
+src/monorhythm.c \
+src/morse.c \
+src/n2m.c \
+src/pin~.c \
+src/prob.c \
+src/synapseA~.c
 
 extradirs = examples
 
-#the mjlib-meta.pd should be renamed to mjLib-meta.pd
-extrafiles = VERSION
+
+datafiles = \
+$(wildcard help/*-help.pd) \
+*(wildcard examples *.pd) \
+VERSION \
+README.txt \
+mjlib-meta.pd
 
 externalsdir = ..
 # include Makefile.pdlibbuilder from parent or current directory 
