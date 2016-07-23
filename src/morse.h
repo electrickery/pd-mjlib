@@ -28,7 +28,6 @@ static void morse_freemsg( morse_msglet* msg);
 static void morse_free(t_morse *x);
 static void *morse_new(t_symbol *s, int argc, t_atom *argv);
 static void morse_message( t_morse *x, t_symbol *s, int ac, t_atom *av );
-static void morse_do_beat( t_morse* x );
 
 
 

@@ -9,6 +9,8 @@
 #include <string.h>
 #include "morse.h"
 
+#define VERSION "0.1.3"
+
 /**
 *	The morse object is designed to translate messages into 
 *	morse code. There are two outlets - a dot outlet and a dash 
@@ -139,8 +141,8 @@ static void morse_rewind( t_morse *x)
 {
 	x->x_spaceticks = 0;
     if (x->x_msg) { // prevents crash on [rewind( before [msg(
-        x->x_curmsg->idx = 0;
-        x->x_curmsg = x->x_msg;
+	    x->x_curmsg = x->x_msg;
+	    x->x_curmsg->idx = 0;
     }
 }
 
@@ -177,7 +179,6 @@ static void morse_freemsg( morse_msglet* msg)
 
 static void *morse_new(t_symbol *s, int argc, t_atom *argv)
 {
-	float f;
 	t_morse *x = (t_morse *)pd_new(morse_class);	    
 	x->x_msg = NULL;
 	// parse any settings
@@ -203,7 +204,7 @@ static void morse_message( t_morse *x, t_symbol *s, int ac, t_atom *av )
 	if ( x->x_msg != NULL )
 	{
 		morse_freemsg( x->x_msg );
-		x->x_msg = NULL;				
+		x->x_msg = NULL;
 		x->x_curmsg = NULL;
 		x->x_spaceticks =0;
 	}
@@ -297,6 +298,33 @@ static char *morse_lookup( char c )
 	return NULL;
 }
 
+static void morse_status( t_morse *x)
+{
+    post("--==## mjlib/prob %s ##==--", VERSION);
+     if (x->x_curmsg) {
+        post("x_curmsg->msg:     %s", x->x_curmsg->msg);
+        post("x_curmsg->idx:     %d", x->x_curmsg->idx);
+        post("x_curmsg->length: %d", x->x_curmsg->length);
+        post("x_curmsg->next:    %s", (x->x_curmsg->next) ? "true" : "false");
+    } else {
+        post("x_msg->x_curmsg:");
+    }
+    int i = 0;
+    morse_msglet* msg = x->x_msg;
+    while( msg != NULL ) 
+    { 
+        post("%d: msg->msg:     %s", i, msg->msg);
+        post("%d: msg->idx:     %d", i, msg->idx);
+        post("%d: msg->length: %d", i, msg->length);
+        post("%d: msg->next:    %s", i, (msg->next) ? "true" : "false");
+        msg = msg->next; 
+        i++;
+    }
+    
+    post("x_spaceticks:       %f", x->x_spaceticks);
+}
+
+
 /**
 *	make a new one and setup all of our messages
 */
@@ -308,8 +336,9 @@ static char *morse_lookup( char c )
     class_addbang(morse_class, morse_bang);
 	class_addmethod(morse_class, (t_method)morse_message, gensym("msg" ), A_GIMME, 0);    	
 	//class_addmethod(morse_class, (t_method)morse_set_time, gensym("timeinterval" ), A_FLOAT, 0);    	
-	class_addmethod(morse_class, (t_method)morse_rewind,gensym("rewind"),0);
+	class_addmethod(morse_class, (t_method)morse_rewind, gensym("rewind"),0);
 	//class_addmethod(morse_class, (t_method)morse_set_nonexclusive,gensym("nonexclusive"),0); 
-	
+    class_addmethod(morse_class, (t_method)morse_status, gensym("status" ), 0); 
+
 }
 
