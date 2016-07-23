@@ -1,0 +1,10 @@
+#N canvas 211 438 450 300 10;
+#X msg 121 87 status;
+#X msg 175 87 -1;
+#X msg 208 87 2;
+#X msg 69 126 foo bar;
+#X obj 147 201 mjlib/prob;
+#X connect 0 0 4 0;
+#X connect 1 0 4 1;
+#X connect 2 0 4 2;
+#X connect 3 0 4 0;
