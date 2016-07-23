@@ -5,7 +5,6 @@ lib.name = mjlib
 
 class.sources = \
 src/about.c \
-src/convolve~.c \
 src/metroplus.c \
 src/monorhythm.c \
 src/morse.c \
