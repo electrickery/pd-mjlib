@@ -7,6 +7,8 @@
 #include<time.h>
 #include "prob.h"
 
+#define VERSION "0.1.3"
+
 /**
 *	The prob object is designed to generate random events 
 *	with a given probability - essentially every clock tick
@@ -81,12 +83,16 @@ static void prob_free(t_prob *x)
 *	so read these in too
 */
 
-static void *prob_new(t_float t , t_float probability )
+static void *prob_new(t_float _interval, t_float _probability)
 {
 	t_prob *x = (t_prob *)pd_new(prob_class);		
-    prob_set_time( x , t );
-	prob_set_probability( x , probability );
-	x->x_running=0;
+    t_float interval    = (_interval <= 0) ? DEFAULT_INTERVAL : _interval;
+    t_float probability = (_probability < 0 || _probability > 1) ? 
+        DEFAULT_PROBABILITY : _probability;
+    
+    prob_set_time(x, interval);
+	prob_set_probability(x, probability);
+	x->x_running = 0;
 	// make us some ins and outs
     x->x_clock = clock_new(x, (t_method)prob_tick);
     outlet_new(&x->x_obj, gensym("bang"));
@@ -119,9 +125,22 @@ static void prob_set_probability( t_prob *x, t_float f )
 *	set the time 
 */
 
-static void prob_set_time( t_prob *x, t_float f )
+static void prob_set_time( t_prob *x, t_float _interval)
 {
-	x->x_time = f;	
+    if (_interval > 0)
+    {
+	    x->x_time = _interval;
+    } else {
+        post("timer interval must be larger than 0");
+    }
+}
+
+static void prob_set_status( t_prob *x)
+{
+    post("--==## mjlib/prob %s ##==--", VERSION);
+    post("x_time:            %f", x->x_time);
+    post("x_probability:   %f", x->x_probability);
+    post("x_running:       %f", x->x_running);
 }
 
 /**
@@ -138,6 +157,6 @@ static void prob_set_time( t_prob *x, t_float f )
 	class_addmethod(prob_class, (t_method)prob_bang, gensym("start"), 0);    
 	class_addmethod(prob_class, (t_method)prob_set_probability, gensym("probability" ), A_FLOAT, 0);    	
 	class_addmethod(prob_class, (t_method)prob_set_time, gensym("time" ), A_FLOAT, 0);    	
-	
+	class_addmethod(prob_class, (t_method)prob_set_status, gensym("status" ), 0); 
 }
 
