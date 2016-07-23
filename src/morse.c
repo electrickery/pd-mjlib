@@ -137,9 +137,11 @@ static void morse_bang(t_morse *x)
 
 static void morse_rewind( t_morse *x)
 {
-	x->x_curmsg->idx = 0;
 	x->x_spaceticks = 0;
-	x->x_curmsg = x->x_msg;
+    if (x->x_msg) { // prevents crash on [rewind( before [msg(
+        x->x_curmsg->idx = 0;
+        x->x_curmsg = x->x_msg;
+    }
 }
 
 
