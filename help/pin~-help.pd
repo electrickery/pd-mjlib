@@ -1,34 +1,22 @@
-#N canvas 1 53 554 617 12;
-#X obj 210 485 dac~;
-#X obj 159 395 osc~;
-#X msg 159 282 69;
-#X obj 159 327 mtof;
-#X floatatom 159 304 0 0 0 0 - - -;
-#X floatatom 159 349 0 0 0 0 - - -;
-#X obj 159 371 sig~;
-#X floatatom 238 314 5 0 1 0 - - -;
-#X floatatom 312 359 5 0 0 0 - - -;
-#X text 19 13 pin~;
-#X text 20 55 the pin~ object can be considered to be similar to the
-pin in a bagatelle game. The ball upon hitting it has a random probability
-of falling to one side or the other. The pin~ object takes a single
-signal input and outputs it to the left or right output at random based
-on the probability set (right most input). The interval at which the
-outlet is choosen can be set by the right most input. Setting this
-to 0 or less means a different output is choosen for every call of
-the dsp routine. A higher value means that the output is choosen every
-so many milliseconds.;
-#X obj 159 250 loadbang;
-#X text 19 314 test signal;
-#X text 19 327 generator---->;
-#X text 226 289 probability to choose left;
-#X text 304 307 (between 0 and 1);
-#X text 325 338 choice interval;
-#X obj 181 437 pin~ 0.5 100;
-#X text 25 523 note that no panning or envelopes are applied and therefore
-low choice intervals will add "switching" noise to the output.;
-#X text 19 30 by mark williamson (mark@junklight.com);
-#N canvas 464 162 494 344 META 0;
+#N canvas 504 86 559 457 10;
+#X obj 0 0 cnv 15 552 40 empty empty pin~ 3 12 0 18 -204280 -1 0;
+#X obj 0 314 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
+;
+#X obj 0 357 cnv 3 550 3 empty empty outlets 8 12 0 13 -228856 -1 0
+;
+#X obj 0 412 cnv 3 550 3 empty empty arguments 8 12 0 13 -228856 -1
+0;
+#X obj 79 366 cnv 17 3 17 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X obj 79 328 cnv 17 3 17 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X obj 0 454 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
+0;
+#N canvas 240 348 428 75 Related_objects 0;
+#X obj 0 0 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
+#X text 6 1 Related Objects;
+#X restore 206 456 pd Related_objects;
+#N canvas 756 193 494 344 META 0;
 #X text 12 195 HELP_PATCH_AUTHORS "pd meta" information added by Jonathan
 Wilkes for Pd version 0.42.;
 #X text 12 25 LICENSE GPL v2;
@@ -42,15 +30,48 @@ to the left or right output at random based on the probability set
 #X text 12 135 OUTLET_0 signal;
 #X text 12 155 OUTLET_1 signal;
 #X text 12 5 KEYWORDS signal random;
-#X restore 478 583 pd META;
-#X connect 1 0 17 0;
-#X connect 2 0 4 0;
-#X connect 3 0 5 0;
-#X connect 4 0 3 0;
-#X connect 5 0 6 0;
-#X connect 6 0 1 0;
-#X connect 7 0 17 1;
-#X connect 8 0 17 2;
-#X connect 11 0 2 0;
-#X connect 17 0 0 0;
-#X connect 17 1 0 1;
+#X restore 503 456 pd META;
+#X obj 152 260 mjlib/output~;
+#X floatatom 258 121 5 0 0 0 - - -, f 5;
+#X obj 153 187 mjlib/pin~ 0.5 100;
+#X obj 521 3 pin~;
+#X text 8 23 random based signal router, f 78;
+#X text 107 328 signal;
+#X text 162 328 - input signal;
+#X obj 79 390 cnv 17 3 17 empty empty 1 5 9 0 16 -228856 -162280 0
+;
+#X text 107 366 signal;
+#X text 107 390 signal;
+#X text 160 366 - first output signal. Either input signal or zero
+;
+#X text 160 390 - second output signal. Either input signal or zero
+;
+#X text 86 432 probability (0-1) and switch interval in ms.;
+#X obj 208 81 hsl 64 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 205 101 5 0 0 0 - - -, f 5;
+#X obj 261 102 hsl 64 15 0 1000 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 500 1;
+#X obj 154 60 osc~ 440;
+#N canvas 1 79 450 300 original 0;
+#X text 19 13 pin~;
+#X text 20 55 the pin~ object can be considered to be similar to the
+pin in a bagatelle game. The ball upon hitting it has a random probability
+of falling to one side or the other. The pin~ object takes a single
+signal input and outputs it to the left or right output at random based
+on the probability set (right most input). The interval at which the
+outlet is choosen can be set by the right most input. Setting this
+to 0 or less means a different output is choosen for every call of
+the dsp routine. A higher value means that the output is choosen every
+so many milliseconds.;
+#X text 19 30 by mark williamson (mark@junklight.com);
+#X text 21 199 note that no panning or envelopes are applied and therefore
+low choice intervals will add "switching" noise to the output.;
+#X restore 433 287 pd original text;
+#X connect 10 0 11 2;
+#X connect 11 0 9 0;
+#X connect 11 1 9 1;
+#X connect 22 0 23 0;
+#X connect 23 0 11 1;
+#X connect 24 0 10 0;
+#X connect 25 0 11 0;

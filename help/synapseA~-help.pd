@@ -1,18 +1,77 @@
-#N canvas 3 53 450 300 10;
-#X text 120 178 placeholder help patch;
-#X text 147 62 from mjlib;
-#X obj 162 123 synapseA~;
-#N canvas 466 220 494 344 META 0;
-#X text 12 205 HELP_PATCH_AUTHORS "pd meta" information added by Jonathan
-Wilkes for Pd version 0.42.;
-#X text 12 35 LICENSE GPL v2;
-#X text 12 185 AUTHOR Mark Williamson <mark@junklight.com>;
-#X text 12 145 OUTLET_1;
-#X text 12 5 KEYWORDS signal needs_work (EXAMPLE/INLETS/OUTLETS/DESCRIPTION?)
+#N canvas 550 79 559 457 10;
+#X obj 0 0 cnv 15 552 40 empty empty synapseA~ 3 12 0 18 -204280 -1
+0;
+#X obj 0 311 cnv 3 550 3 empty empty outlets 8 12 0 13 -228856 -1 0
 ;
-#X text 12 55 DESCRIPTION;
-#X text 12 85 INLET_0 signal;
-#X text 12 105 INLET_1;
-#X text 12 125 OUTLET_0;
-#X text 12 165 OUTLET_2;
-#X restore 398 269 pd META;
+#X obj 0 397 cnv 3 550 3 empty empty arguments 8 12 0 13 -228856 -1
+0;
+#X obj 79 320 cnv 17 3 25 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X obj 0 471 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
+0;
+#N canvas 238 349 428 75 Related_objects 0;
+#X obj 0 0 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
+#X text 6 1 Related Objects;
+#X restore 206 473 pd Related_objects;
+#N canvas 756 193 494 344 META 0;
+#X text 12 169 HELP_PATCH_AUTHORS "pd meta" information added by Jonathan
+Wilkes for Pd version 0.42.;
+#X text 12 25 LICENSE GPL v2;
+#X text 12 149 AUTHOR Mark Williamson <mark@junklight.com>;
+#X text 12 45 DESCRIPTION designed to generate a random event with
+a given probability at a given interval;
+#X text 12 130 OUTLET_0 bang;
+#X text 12 5 KEYWORDS control random event generator;
+#X text 12 75 INLET_0 bang start stop;
+#X text 12 94 INLET_1 float;
+#X text 11 112 INLET_2 float;
+#X restore 503 473 pd META;
+#X obj 0 428 cnv 3 550 3 empty empty more_info 8 12 0 13 -228856 -1
+0;
+#X obj 0 397 cnv 3 550 3 empty empty arguments 8 12 0 13 -228856 -1
+0;
+#X text 93 407 timer interval and probability;
+#X obj 178 143 mjlib/synapseA~;
+#X obj 265 210 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 178 210 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 265 80 5 0 0 0 - - -, f 5;
+#X obj 221 210 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 179 60 phasor~ 1;
+#X obj 268 60 hsl 64 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 5900 1;
+#X obj 485 4 synapseA~;
+#X text 8 23 block based averager and comparator, f 78;
+#X obj 0 242 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
+;
+#X obj 79 256 cnv 17 3 17 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X obj 79 281 cnv 17 3 17 empty empty 1 5 9 0 16 -228856 -162280 0
+;
+#X text 107 256 signal;
+#X text 162 256 - sample source;
+#X text 107 281 float;
+#X text 162 281 - threshold level;
+#X text 107 320 float;
+#X text 160 320 - 0 or 1 depending on block average value compared
+to threshold;
+#X obj 79 351 cnv 17 3 17 empty empty 1 5 9 0 16 -228856 -162280 0
+;
+#X text 107 351 bang;
+#X text 160 351 - bangs when block average is lower than threshold
+;
+#X obj 79 375 cnv 17 3 17 empty empty 2 5 9 0 16 -228856 -162280 0
+;
+#X text 107 375 bang;
+#X text 161 374 - bangs when block average is average than threshold
+;
+#X text 94 438 do an average on the block and see if it is bigger than
+our threshold then check for state change and output accordingly;
+#X connect 10 0 12 0;
+#X connect 10 1 14 0;
+#X connect 10 2 11 0;
+#X connect 13 0 10 1;
+#X connect 15 0 10 0;
+#X connect 16 0 13 0;

@@ -1,22 +1,25 @@
-#N canvas 1 53 563 440 12;
-#X floatatom 215 277 5 0 0 0 of_this_number---> - -;
-#X floatatom 215 374 5 0 0 0 here---> - -;
-#X obj 215 172 bng 35 250 50 0 empty empty empty 20 8 0 8 -262144 -1
--1;
-#X floatatom 325 214 5 0 0 0 - - -;
-#X obj 215 323 about 10;
-#X text 24 16 about;
-#X text 25 34 by mark williamson;
-#X text 22 56 (mark@junklight.com);
-#X text 26 92 about makes numbers that are + or - a percenage error
-from a given value. That is it makes numbers that are "about" the given
-value.;
-#X text 67 168 click here --->;
-#X text 88 194 and get;
-#X text 255 192 a number which is within;
-#X text 377 215 %;
-#X text 319 340 %age as a parameter;
-#X text 304 322 note: you can set the default;
+#N canvas 382 79 558 541 10;
+#X obj 0 0 cnv 15 552 40 empty empty about 3 12 0 18 -204280 -1 0;
+#X obj 0 354 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
+;
+#X obj 0 421 cnv 3 550 3 empty empty outlets 8 12 0 13 -228856 -1 0
+;
+#X obj 0 458 cnv 3 550 3 empty empty arguments 8 12 0 13 -228856 -1
+0;
+#X obj 79 430 cnv 17 3 17 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X obj 79 368 cnv 17 3 17 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X text 107 430 signal;
+#X obj 0 543 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
+0;
+#N canvas 242 347 428 75 Related_objects 0;
+#X obj 0 0 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
+#X text 6 1 Related Objects;
+#X restore 206 546 pd Related_objects;
+#X obj 512 4 about;
+#X text 8 23 random generator based on anchor value and percentual
+deviation, f 66;
 #N canvas 273 106 494 344 META 0;
 #X text 12 155 HELP_PATCH_AUTHORS "pd meta" information added by Jonathan
 Wilkes for Pd version 0.42.;
@@ -28,8 +31,73 @@ error from a given value;
 #X text 12 95 INLET_1 float;
 #X text 12 115 OUTLET_0 float;
 #X text 12 5 KEYWORDS control filter;
-#X restore 496 407 pd META;
-#X connect 0 0 4 0;
-#X connect 2 0 0 0;
-#X connect 3 0 4 1;
-#X connect 4 0 1 0;
+#X restore 501 547 pd META;
+#X floatatom 134 139 5 0 0 0 of_this_number---> - -, f 5;
+#X floatatom 134 311 5 0 0 0 - - -, f 5;
+#X obj 134 82 bng 35 250 50 0 empty empty empty 20 8 0 8 -262144 -1
+-1;
+#X floatatom 215 140 5 0 0 0 - - -, f 5;
+#X obj 79 392 cnv 17 3 17 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X text 107 368 float;
+#X text 107 392 float;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array \$0-about 100 float 2;
+#X coords 0 10 100 0 200 140 1 0 0;
+#X restore 337 59 graph;
+#N canvas 1 80 450 300 arrayWrite 0;
+#X obj 0 0 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
+#X text 6 1 Array writer;
+#X obj 235 152 f 0;
+#X obj 261 153 + 1;
+#X obj 136 130 t f b;
+#X msg 235 129 0;
+#X text 259 129 restart;
+#X obj 136 82 inlet;
+#X obj 235 82 inlet;
+#X obj 136 174 tabwrite \$0-about;
+#X connect 2 0 3 0;
+#X connect 2 0 9 1;
+#X connect 3 0 2 1;
+#X connect 4 0 9 0;
+#X connect 4 1 2 0;
+#X connect 5 0 2 0;
+#X connect 7 0 4 0;
+#X connect 8 0 5 0;
+#X restore 134 329 pd arrayWrite;
+#X obj 209 310 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 215 115 10;
+#X msg 275 115 100;
+#X msg 246 115 50;
+#X obj 134 65 metro 100;
+#X obj 134 50 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 321 187 0;
+#X text 321 59 10;
+#X obj 137 120 hsl 64 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X text 226 310 restart;
+#X obj 134 227 mjlib/about 10;
+#X text 162 368 - The center value of the generated number;
+#X text 160 430 - The generated value;
+#X text 96 467 default deviation percentage;
+#X text 162 392 - The percentual deviation range of the generated number
+;
+#X obj 0 488 cnv 3 550 3 empty empty more_info 8 12 0 13 -228856 -1
+0;
+#X text 96 497 about makes numbers that are + or - a percentage error
+from a given value. That is it makes numbers that are "about" the given
+value.;
+#X connect 12 0 31 0;
+#X connect 13 0 20 0;
+#X connect 14 0 29 0;
+#X connect 15 0 31 1;
+#X connect 21 0 20 1;
+#X connect 22 0 15 0;
+#X connect 23 0 15 0;
+#X connect 24 0 15 0;
+#X connect 25 0 14 0;
+#X connect 26 0 25 0;
+#X connect 29 0 12 0;
+#X connect 31 0 13 0;

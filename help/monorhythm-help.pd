@@ -1,52 +1,173 @@
-#N canvas 1 53 644 649 12;
-#X obj 291 585 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
+#N canvas 382 79 556 531 10;
+#X obj 0 0 cnv 15 552 40 empty empty monorhythm 3 12 0 18 -204280 -1
+0;
+#X obj 0 356 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
+;
+#X obj 0 517 cnv 3 550 3 empty empty outlets 8 12 0 13 -228856 -1 0
+;
+#X obj 0 595 cnv 3 550 3 empty empty arguments 8 12 0 13 -228856 -1
+0;
+#X obj 79 525 cnv 17 3 17 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X obj 79 370 cnv 17 3 85 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X obj 0 629 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
+0;
+#N canvas 242 347 428 75 Related_objects 0;
+#X obj 0 0 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
+#X text 6 1 Related Objects;
+#X restore 206 631 pd Related_objects;
+#X obj 483 2 metroplus;
+#X obj 79 463 cnv 17 3 17 empty empty 1 5 9 0 16 -228856 -162280 0
+;
+#X obj 170 265 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
 -1;
-#X msg 115 440 start;
-#X obj 219 585 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
+#X msg 170 61 start;
+#X msg 177 81 stop;
+#X obj 152 62 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
 -1;
-#X obj 363 585 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
--1;
-#X msg 41 429 stop;
-#X obj 210 442 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
--1;
-#X msg 353 461 1 2 1 1;
-#X msg 452 473 2000;
-#X msg 261 426 1 2 0 1;
-#X obj 219 546 monorhythm 2000 2 1 1;
-#X text 23 28 by mark williamson;
-#X text 25 3 monorhythm;
-#X text 23 52 (mark@junklight.com);
-#X text 28 129 The monorhythm object is given a time interval and a
-rhythm pattern. It divides the interval into the number of beats in
-the pattern and outputs bangs as defined by the pattern. The performance
-time of the entire pattern is given by the time interval.;
-#X text 30 212 The pattern consists of strings of the symbols 0 \,
-1 and 2 0 is a rest \, 1 is a normal beat and 2 is an accented beat.
-A rest produces no output. A 1 produces a bang on the leftmost outlet.
-A 2 produces a bang on the left most outlet and a bang on the middle
-outlet (the accent outlet).;
-#X text 30 296 In order to synchronise multiple monorhythms there is
-a third outlet - the sync outlet. This does a bang at the start of
-every bar - which can be fed to the left most inlet of a second (or
-Nth) monorhythm.;
-#X text 29 367 for an example of a polyrhythm see:;
-#X obj 380 367 examples/polyexample;
-#X text 199 606 beat;
-#X text 277 603 accent;
-#X text 352 604 sync;
-#X text 449 503 time interval;
-#X text 278 394 pattern;
-#X text 37 401 stop;
-#X text 104 402 start or bang;
-#X text 105 418 sets it going;
-#X msg 25 484 exclusive;
-#X msg 27 579 nonexclusive;
-#X text 22 515 beat and accent;
-#X text 21 532 bangs are mutually;
-#X text 20 547 exclusive;
-#X text 23 602 accent bang;
-#X text 23 617 supplements;
-#X text 22 635 the beat bang;
+#X text 107 370 bang;
+#X text 184 370 - start metroplus;
+#X text 184 388 - start metroplus;
+#X text 107 388 start;
+#X text 107 405 stop;
+#X text 184 405 - stop metroplus;
+#X text 107 525 bang;
+#X text 8 23 multi-interval multi-output rhythm generator;
+#X obj 170 188 mjlib/monorhythm 2000 2 1 1;
+#X msg 249 60 1 2 0 1;
+#X msg 258 80 1 2 1 1;
+#X msg 338 81 1500;
+#N canvas 681 429 450 561 accent 0;
+#X obj 184 223 vline~;
+#X obj 171 438 *~;
+#X obj 142 302 cos~;
+#X obj 157 140 t f f;
+#X obj 142 282 *~;
+#X msg 157 114 70;
+#X obj 172 532 outlet~;
+#X obj 226 512 switch~;
+#X obj 226 464 env~;
+#X obj 226 488 > 0.1;
+#X msg 280 201 1;
+#X obj 176 64 t b b b;
+#X obj 176 10 inlet;
+#X text 330 471 ajf;
+#X obj 184 281 *~;
+#X obj 171 415 cos~;
+#X obj 116 480 s~ \$0-fb;
+#X obj 77 304 r~ \$0-fb;
+#X obj 127 353 +~;
+#X obj 76 380 *~;
+#X obj 185 306 *~;
+#X obj 128 328 sig~ 5;
+#X msg 195 114 6;
+#X obj 157 166 /;
+#X msg 184 201 1 0 0 \, 0 \$1 3;
+#X text 294 449 efficient snare drum;
+#X obj 112 89 del 5;
+#X msg 112 114 90;
+#X connect 0 0 4 0;
+#X connect 0 0 14 0;
+#X connect 0 0 14 1;
+#X connect 1 0 6 0;
+#X connect 1 0 8 0;
+#X connect 1 0 16 0;
+#X connect 2 0 18 1;
+#X connect 3 0 23 0;
+#X connect 3 1 24 0;
+#X connect 4 0 2 0;
+#X connect 5 0 3 0;
+#X connect 8 0 9 0;
+#X connect 9 0 7 0;
+#X connect 10 0 7 0;
+#X connect 11 0 26 0;
+#X connect 11 1 22 0;
+#X connect 11 2 10 0;
+#X connect 12 0 11 0;
+#X connect 14 0 20 0;
+#X connect 14 0 20 1;
+#X connect 15 0 1 0;
+#X connect 17 0 19 0;
+#X connect 18 0 19 1;
+#X connect 19 0 15 0;
+#X connect 20 0 1 1;
+#X connect 21 0 18 0;
+#X connect 22 0 23 1;
+#X connect 23 0 4 1;
+#X connect 24 0 0 0;
+#X connect 26 0 27 0;
+#X connect 26 0 5 0;
+#X connect 27 0 3 0;
+#X restore 249 284 pd accent;
+#N canvas 911 419 450 561 beat 0;
+#X obj 211 301 vline~;
+#X obj 165 434 *~;
+#X obj 165 409 cos~;
+#X obj 164 385 *~;
+#X obj 164 362 *~;
+#X obj 181 218 t f f;
+#X obj 165 338 *~;
+#X msg 211 279 1 0 0 \, 0 \$1 0;
+#X msg 181 194 70;
+#X obj 181 244 / 29;
+#X msg 274 196 33.9;
+#X msg 237 196 30.5;
+#X msg 312 196 36.1;
+#X obj 164 461 outlet~;
+#X obj 220 508 switch~;
+#X obj 220 460 env~;
+#X obj 220 484 > 0.1;
+#X msg 360 197 1;
+#X obj 290 85 t b b b;
+#X obj 252 112 t b b b;
+#X obj 215 142 t b b b;
+#X obj 233 26 inlet;
+#X text 284 445 efficient kick drum;
+#X text 321 467 ajf;
+#X obj 233 53 t b b b;
+#X connect 0 0 1 1;
+#X connect 0 0 6 0;
+#X connect 0 0 3 1;
+#X connect 1 0 13 0;
+#X connect 1 0 15 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 9 0;
+#X connect 5 1 7 0;
+#X connect 6 0 4 1;
+#X connect 6 0 4 0;
+#X connect 7 0 0 0;
+#X connect 8 0 5 0;
+#X connect 9 0 6 1;
+#X connect 10 0 9 1;
+#X connect 11 0 9 1;
+#X connect 12 0 9 1;
+#X connect 15 0 16 0;
+#X connect 16 0 14 0;
+#X connect 17 0 14 0;
+#X connect 18 0 8 0;
+#X connect 18 1 12 0;
+#X connect 18 2 17 0;
+#X connect 19 0 8 0;
+#X connect 19 1 10 0;
+#X connect 19 2 17 0;
+#X connect 20 0 8 0;
+#X connect 20 1 11 0;
+#X connect 20 2 17 0;
+#X connect 21 0 24 0;
+#X connect 24 0 20 0;
+#X connect 24 1 19 0;
+#X connect 24 2 18 0;
+#X restore 170 284 pd beat;
+#X obj 249 265 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 329 265 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 329 61 2000;
+#X msg 64 61 exclusive;
+#X msg 65 81 nonexclusive;
 #N canvas 278 251 494 344 META 0;
 #X text 12 205 HELP_PATCH_AUTHORS "pd meta" information added by Jonathan
 Wilkes for Pd version 0.42.;
@@ -61,18 +182,69 @@ Wilkes for Pd version 0.42.;
 #X text 12 125 OUTLET_0 bang;
 #X text 12 145 OUTLET_1 bang;
 #X text 12 165 OUTLET_2 bang;
-#X restore 551 621 pd META;
+#X restore 503 632 pd META;
+#X text 107 423 exclusive;
+#X text 184 423 - beat and accent bangs mutually exclusive;
+#X text 107 441 nonexclusive;
+#X text 184 441 - accent bang supplements the beat bang;
+#X text 107 463 list;
+#X text 184 463 - rhythm pattern. 0 = rest \, 1 = normal beat \, 2
+= accented beat;
+#X obj 79 491 cnv 17 3 17 empty empty 2 5 9 0 16 -228856 -162280 0
+;
+#X text 107 492 float;
+#X text 184 492 - measure intervals in ms;
+#X text 160 525 - beat bang;
+#X text 107 547 bang;
+#X text 160 547 - accent bang;
+#X text 107 566 bang;
+#X text 160 566 - sync bang;
+#X obj 79 548 cnv 17 3 17 empty empty 1 5 9 0 16 -228856 -162280 0
+;
+#X obj 79 571 cnv 17 3 17 empty empty 2 5 9 0 16 -228856 -162280 0
+;
+#X text 96 606 default measure interval followed by default pattern
+;
+#N canvas 613 532 431 353 original 0;
+#X text 23 28 by mark williamson;
+#X text 23 52 (mark@junklight.com);
+#X text 28 129 The monorhythm object is given a time interval and a
+rhythm pattern. It divides the interval into the number of beats in
+the pattern and outputs bangs as defined by the pattern. The performance
+time of the entire pattern is given by the time interval.;
+#X text 30 212 The pattern consists of strings of the symbols 0 \,
+1 and 2 0 is a rest \, 1 is a normal beat and 2 is an accented beat.
+A rest produces no output. A 1 produces a bang on the leftmost outlet.
+A 2 produces a bang on the left most outlet and a bang on the middle
+outlet (the accent outlet).;
+#X text 30 296 In order to synchronise multiple monorhythms there is
+a third outlet - the sync outlet. This does a bang at the start of
+every bar - which can be fed to the left most inlet of a second (or
+Nth) monorhythm.;
 #X text 28 77 The monorhythm object is designed to allow simple rhythms
 to be generated. It is also constructed in such away so as to create
 more complex polyrhythms quickly and easily.;
-#X connect 1 0 9 0;
-#X connect 4 0 9 0;
-#X connect 5 0 9 0;
-#X connect 6 0 9 1;
-#X connect 7 0 9 2;
-#X connect 8 0 9 1;
-#X connect 9 0 2 0;
-#X connect 9 1 0 0;
-#X connect 9 2 3 0;
-#X connect 26 0 9 0;
-#X connect 27 0 9 0;
+#X obj 1 1 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
+#X text 5 2 monorhythm;
+#X restore 374 309 pd original text;
+#X obj 374 331 mjlib/examples/polyexample;
+#X text 327 282 sync;
+#X obj 170 312 mjlib/output~;
+#X connect 10 0 27 0;
+#X connect 11 0 22 0;
+#X connect 12 0 22 0;
+#X connect 13 0 22 0;
+#X connect 22 0 10 0;
+#X connect 22 1 28 0;
+#X connect 22 2 29 0;
+#X connect 23 0 22 1;
+#X connect 24 0 22 1;
+#X connect 25 0 22 2;
+#X connect 26 0 54 0;
+#X connect 26 0 54 1;
+#X connect 27 0 54 0;
+#X connect 27 0 54 1;
+#X connect 28 0 26 0;
+#X connect 30 0 22 2;
+#X connect 31 0 22 0;
+#X connect 32 0 22 0;

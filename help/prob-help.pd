@@ -1,44 +1,80 @@
-#N canvas 1 53 473 505 12;
-#X obj 235 384 prob;
-#X obj 235 448 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
+#N canvas 498 89 559 457 10;
+#X obj 0 0 cnv 15 552 40 empty empty prob 3 12 0 18 -204280 -1 0;
+#X obj 0 301 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
+;
+#X obj 0 344 cnv 3 550 3 empty empty outlets 8 12 0 13 -228856 -1 0
+;
+#X obj 0 381 cnv 3 550 3 empty empty arguments 8 12 0 13 -228856 -1
+0;
+#X obj 79 353 cnv 17 3 17 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X obj 79 315 cnv 17 3 17 empty empty 0 5 9 0 16 -228856 -162280 0
+;
+#X obj 0 471 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
+0;
+#N canvas 238 349 428 75 Related_objects 0;
+#X obj 0 0 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
+#X text 6 1 Related Objects;
+#X restore 206 473 pd Related_objects;
+#N canvas 756 193 494 344 META 0;
+#X text 12 169 HELP_PATCH_AUTHORS "pd meta" information added by Jonathan
+Wilkes for Pd version 0.42.;
+#X text 12 25 LICENSE GPL v2;
+#X text 12 149 AUTHOR Mark Williamson <mark@junklight.com>;
+#X text 12 45 DESCRIPTION designed to generate a random event with
+a given probability at a given interval;
+#X text 12 130 OUTLET_0 bang;
+#X text 12 5 KEYWORDS control random event generator;
+#X text 12 75 INLET_0 bang start stop;
+#X text 12 94 INLET_1 float;
+#X text 11 112 INLET_2 float;
+#X restore 503 473 pd META;
+#X text 107 315 note;
+#X text 162 315 - list of note names;
+#X obj 513 4 prob;
+#X obj 223 280 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
 -1;
-#X msg 134 317 start;
-#X msg 192 304 stop;
-#X floatatom 249 276 5 0 0 0 - - -;
-#X floatatom 294 348 5 0 1 0 - - -;
-#X text 221 254 time interval;
-#X text 271 314 probability;
-#X text 260 330 between 0 and 1;
-#X text 25 15 prob;
-#X text 25 36 by mark williamson;
-#X text 23 56 (mark@junklight.com);
-#X text 26 84 prob is designed to generate a random event with a given
+#X msg 223 54 start;
+#X msg 223 77 stop;
+#X floatatom 275 74 5 0 0 0 - - -, f 5;
+#X floatatom 328 94 5 0 1 0 - - -, f 5;
+#X obj 204 54 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
+-1;
+#X obj 278 54 hsl 64 15 0 1000 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 331 74 hsl 64 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 223 210 mjlib/prob 500 0.5;
+#X text 107 353 bang;
+#X text 93 391 timer interval and probability;
+#N canvas 1 79 450 300 original 0;
+#X text 20 42 prob;
+#X text 20 63 by mark williamson;
+#X text 18 83 (mark@junklight.com);
+#X text 21 111 prob is designed to generate a random event with a given
 probability at a given interval. Every clock tick (set by time) it
 generates a random number and compares it against the probability to
 see if an event should occur. If so a bang is output at the outlet.
 ;
-#X text 25 174 The probability is set as a value between 0 and 1 Time
+#X text 20 201 The probability is set as a value between 0 and 1 Time
 is measured in milliseconds. The messages start and stop - start and
 stop events being generated. The prob object can also be started with
 a bang.;
-#X obj 103 350 bng 15 250 50 0 empty empty empty 20 8 0 8 -262144 -1
--1;
-#X text 64 372 bang has the;
-#X text 64 389 same effect;
-#X text 64 405 as start;
-#N canvas 465 191 494 344 META 0;
-#X text 12 155 HELP_PATCH_AUTHORS "pd meta" information added by Jonathan
-Wilkes for Pd version 0.42.;
-#X text 12 25 LICENSE GPL v2;
-#X text 12 135 AUTHOR Mark Williamson <mark@junklight.com>;
-#X text 12 45 DESCRIPTION designed to generate a random event with
-a given probability at a given interval;
-#X text 12 75 INLET_0 bang start stop;
-#X text 12 95 OUTLET_0 bang;
-#X text 12 115 OUTLET_1;
-#X text 12 5 KEYWORDS control random needs_work (OUTLET_1?);
-#X restore 402 477 pd META;
-#X connect 0 0 1 0;
-#X connect 2 0 0 0;
-#X connect 3 0 0 0;
-#X connect 14 0 0 0;
+#X obj 0 0 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
+#X text 6 1 original text;
+#X restore 437 280 pd original text;
+#X obj 0 412 cnv 3 550 3 empty empty more_info 8 12 0 13 -228856 -1
+0;
+#X text 93 422 prob generates each time interval a 0 or 1 When the
+value is 1 a bang is send to the outlet. The ratio between 0 and 1
+is controlled by the probability value;
+#X text 8 23 random event generator, f 78;
+#X text 160 353 - random generated;
+#X connect 13 0 20 0;
+#X connect 14 0 20 0;
+#X connect 15 0 20 1;
+#X connect 16 0 20 2;
+#X connect 17 0 20 0;
+#X connect 18 0 15 0;
+#X connect 19 0 16 0;
+#X connect 20 0 12 0;
