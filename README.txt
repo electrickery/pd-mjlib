@@ -11,33 +11,6 @@ please mention me somewhere - its not like its going to cost you anything
 can be quite busy but I will try and deal with any queries.
 
 
-GNU/Linux
-
-Run: "make -f makefile.linux" and all of the objects will be compiled individually.
-
-
-MacOS X
-
-Run: "make -f makefile.darwin" and all of the objects will be compiled individually.
-
-
-Windows 
-
-There is a VC++ 6 project file included an it builds fine with that. I haven't 
-tried anyother tools as yet. However there is a binary version included 
-in case you haven't got the compiler.
-
-To install - add mjLib.dll to your pd library path: 
-
-	-lib C:\pd\mjLib\mjLib
-	
-and copy the contents of doc\mjLib  into 
-
-	[pd home]\docs\5.reference\mjLib 
-	
-that should be you done.
-
-
 General notes
 
 This library will grow a bit - there are a few more objects that I want to 
@@ -58,6 +31,15 @@ January 2002
 ___________________________________________________________
 
 history: 
+
+24th July 2016
+
+<fjkraan@xs4all.nl>:
+- restructured help patches
+- changed version number to 0.1.3
+- prob: added checks and defaults for interval and probability
+- convolve~: removed this non-working and inappropriatly named object
+- morse: fixed crash in [rewind( before [msg(.
 
 6th April 2004
 
@@ -84,3 +66,32 @@ mods to metroplus to allow it to work just like metro is complex time mode not n
 29th january 2002
 
 first release containing pin~ and metroplus
+
+
+Outdated build and install information:
+
+GNU/Linux
+
+Run: "make -f makefile.linux" and all of the objects will be compiled individually.
+
+
+MacOS X
+
+Run: "make -f makefile.darwin" and all of the objects will be compiled individually.
+
+
+Windows 
+
+There is a VC++ 6 project file included an it builds fine with that. I haven't 
+tried anyother tools as yet. However there is a binary version included 
+in case you haven't got the compiler.
+
+To install - add mjLib.dll to your pd library path: 
+
+	-lib C:\pd\mjLib\mjLib
+	
+and copy the contents of doc\mjLib  into 
+
+	[pd home]\docs\5.reference\mjLib 
+	
+that should be you done.
