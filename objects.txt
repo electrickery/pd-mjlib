@@ -1,0 +1,8 @@
+about       random generator based on anchor value and percentual deviation
+metroplus   metro based in list of intervals
+monorhythm  rythm generator outputs beat, accent and sync bangs
+morse       converts ASCII to dot and dash bangs
+n2m         note name to midi convertor
+pin~        paramerterized random signal router
+prob        random generator governed by time interval and probability
+synapseA~   compares a signal to a set threshold
