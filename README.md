@@ -1,4 +1,4 @@
-Mjlib is a small library created by Mark Williamson. 
+Mjlib is a small Pure Data library created by Mark Williamson. 
 
 This git-fork of the Pure-data library mjlib is cloned from https://git.puredata.info/cgit/svn2git/libraries/mjlib.git, which is the svn-to-git from https://sourceforge.net/p/pure-data/svn/HEAD/tree/trunk/externals/mjlib/.
 
