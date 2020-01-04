@@ -13,18 +13,14 @@ src/pin~.c \
 src/prob.c \
 src/synapseA~.c
 
-extradirs = examples
-
+datadirs = examples
 
 datafiles = \
-$(wildcard help/*-help.pd) \
-*(wildcard examples *.pd) \
+$(wildcard help/*.pd) \
 VERSION \
 README.txt \
 mjlib-meta.pd
 
-externalsdir = ../..
-
-PDLIBBUILDER_DIR=.
+PDLIBBUILDER_DIR ?= .
 include $(firstword $(wildcard $(PDLIBBUILDER_DIR)/Makefile.pdlibbuilder \
   $(externalsdir)/Makefile.pdlibbuilder))
