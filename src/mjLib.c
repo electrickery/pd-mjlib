@@ -1,6 +1,3 @@
-#ifdef NT
-#include "stdafx.h"
-#endif
 #include "mjLib.h"
 #include "m_pd.h"
 #include "things.h"

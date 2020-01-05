@@ -1,5 +1,4 @@
 #ifdef _WIN32
-#include "stdafx.h"
 #include <io.h>
 #endif
 #include "m_pd.h"
