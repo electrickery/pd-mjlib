@@ -21,8 +21,5 @@ VERSION \
 README.txt \
 mjlib-meta.pd
 
-externalsdir = ../..
-
-PDLIBBUILDER_DIR ?= .
-include $(firstword $(wildcard $(PDLIBBUILDER_DIR)/Makefile.pdlibbuilder \
-  $(externalsdir)/Makefile.pdlibbuilder))
+PDLIBBUILDER_DIR=pd-lib-builder/
+include $(PDLIBBUILDER_DIR)/Makefile.pdlibbuilder

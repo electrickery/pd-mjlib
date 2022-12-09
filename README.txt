@@ -32,6 +32,13 @@ ___________________________________________________________
 
 history: 
 
+2022-12-08
+
+<fjkraan@electrickery.nl>:
+- Updated Makefile to properly conform to tips&tricks
+- updated maintainer email.
+- updated version to 0.2.0
+
 24th July 2016
 
 <fjkraan@xs4all.nl>:

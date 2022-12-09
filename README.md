@@ -17,4 +17,4 @@ The objects in the library are:
 
 For bugs found in this version, please report them to me. Mark is not responsible for bugs introduced by me.
 
-Fred Jan Kraan fjkraan@xs4all.nl 2016-07-25
+Fred Jan Kraan fjkraan@electrickery.nl 2022-12-09
